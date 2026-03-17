@@ -1,0 +1,25 @@
+DEC       03     2 digit x decimal
+DEC       08     Fractions to decimals
+DEC       05     1 decimal place / 2 digits
+DEC       06     Two digit, one decimal place / single digit
+DEC       09     Fractions into decimals
+
+ADD       00     1 digit + 1 digit
+ADD       05     Additon 3 digit + 2 digit
+
+MUL       01     Single digit multiply
+
+DIV       01     2 digit / 1 digit
+DIV       03     3 digit / 1 digit
+
+NUM CONC  01     Tallies to number
+NUM CONC  03     Fraction of tallies
+NUM CONC  05     Divide with zeros
+NUM CONC  06     Factorise number
+NUM CONC  07     Lowest common multiple
+NUM CONC  09     Common factor
+NUM CONC  10     1 digit times 2 digit plus 1 digit times 2 digit
+NUM CONC  12     Nine number square, fill in missing number
+NUM CONC  13     Round up to nearest N?
+NUM CONC  14     Decide if it is +,-,/,*
+NUM CONC  15     Divide or multiply by constant
