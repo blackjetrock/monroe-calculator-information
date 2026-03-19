@@ -23,3 +23,5 @@ NUM CONC  12     Nine number square, fill in missing number
 NUM CONC  13     Round up to nearest N?
 NUM CONC  14     Decide if it is +,-,/,*
 NUM CONC  15     Divide or multiply by constant
+
+FRAC.     04.    Common denominator 
