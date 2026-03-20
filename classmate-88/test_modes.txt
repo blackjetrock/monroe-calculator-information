@@ -5,6 +5,7 @@ DEC       06     Two digit, one decimal place / single digit
 DEC       09     Fractions into decimals
 
 ADD       00     1 digit + 1 digit
+ADD.      04.    3 digit + 3 digit
 ADD       05     Additon 3 digit + 2 digit
 
 MUL       01     Single digit multiply
@@ -19,7 +20,13 @@ NUM CONC  06     Factorise number
 NUM CONC  07     Lowest common multiple
 NUM CONC  09     Common factor
 NUM CONC  10     1 digit times 2 digit plus 1 digit times 2 digit
-NUM CONC  12     Nine number square, fill in missing number
+NUM CONC. 11.    Nine number square, fill in missing number addition 
+NUM CONC  12     Nine number square, fill in missing number multiplication 
+NUM CONC. 16.    Two digit x two digit 
+
+FRAC.     02     Subtract a/b - c/d
+
+
 NUM CONC  13     Round up to nearest N?
 NUM CONC  14     Decide if it is +,-,/,*
 NUM CONC  15     Divide or multiply by constant
