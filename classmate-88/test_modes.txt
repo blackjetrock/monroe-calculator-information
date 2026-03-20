@@ -1,13 +1,14 @@
 
 DEC.      01.    n.n +, n.n Dec places parameter
 DEC.      02.    n.n - n.n Dec places parameter
-DEC       03     2 digit x decimal
+DEC       03     2 digit x decimal Dec places parameter 
+DEC.      04.    n.nn x n.n
 DEC       08     Fractions to decimals
 DEC       05     1 decimal place / 2 digits
 DEC       06     Two digit, one decimal place / single digit
 DEC       09     Fractions into decimals
 
-ADD       00     1 digit + 1 digit
+ADD       01     1 digit + 1 digit
 ADD.      02     Addition two digits no carry
 ADD       03     Addition 2 digits carry
 ADD.      04.    3 digit + 3 digit
@@ -16,21 +17,26 @@ ADD       06     Addition 3 parameters
 ADD       07     Add 3 numbers, 3 parameters 
 
 MUL       01     Single digit multiply
+MUL.      07
 
 DIV       01     2 digit / 1 digit
 DIV       03     3 digit / 1 digit
+DIV.      08
+
 
 NUM CONC  01     Tallies to number
 NUM CONC  03     Fraction of tallies
 NUM CONC. 04.    Multiplication numbers factors of ten
 NUM CONC  05     Divide with zeros
-NUM CONC  06     Factorise number
+NUM CONC  06     All factors of number
 NUM CONC  07     Lowest common multiple
-NUM CONC  09     Common factor
+NUM CONC. 08.    Factorise number
+NUM CONC  09     lowest Common factor
 NUM CONC  10     1 digit times 2 digit plus 1 digit times 2 digit
 NUM CONC. 11.    Nine number square, fill in missing number addition 
 NUM CONC  12     Nine number square, fill in missing number multiplication 
 NUM CONC. 16.    Two digit x two digit 
+NUM CONC. 17.    Long division
 
 FRAC.     01     Addition a/b + c/d
 FRAC      02     Subtract a/b - c/d
@@ -40,9 +46,14 @@ NUM CONC  13     Round up to nearest N?
 NUM CONC  14     Decide if it is +,-,/,*
 NUM CONC  15     Divide or multiply by constant
 
-FRAC.     04.    Common denominator 
+FRAC.     04.    Common denominator
+FRAC.     08
+FRAC.     12
+FRAC.     15
 
 SUB.      01     Small subtraction 
 SUB.      02.    Subtraction two digits no carry
+SUB       07     
+
 
 
