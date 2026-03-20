@@ -1,3 +1,6 @@
+
+DEC.      01.    n.n +, n.n Dec places parameter
+DEC.      02.    n.n - n.n Dec places parameter
 DEC       03     2 digit x decimal
 DEC       08     Fractions to decimals
 DEC       05     1 decimal place / 2 digits
@@ -5,6 +8,8 @@ DEC       06     Two digit, one decimal place / single digit
 DEC       09     Fractions into decimals
 
 ADD       00     1 digit + 1 digit
+ADD.      02     Addition two digits no carry
+ADD       03     Addition 2 digits carry
 ADD.      04.    3 digit + 3 digit
 ADD       05     Additon 3 digit + 2 digit
 ADD       06     Addition 3 parameters 
@@ -38,4 +43,6 @@ NUM CONC  15     Divide or multiply by constant
 FRAC.     04.    Common denominator 
 
 SUB.      01     Small subtraction 
+SUB.      02.    Subtraction two digits no carry
+
 
