@@ -47,32 +47,35 @@ NUM CONC  09     lowest Common factor
 NUM CONC  10     1 digit times 2 digit plus 1 digit times 2 digit
 NUM CONC. 11.    Nine number square, fill in missing number addition 
 NUM CONC  12     Nine number square, fill in missing number multiplication 
-NUM CONC. 16.    Two digit x two digit 
-NUM CONC. 17.    Long division
-
-FRAC.     01     Addition a/b + c/d same denominator
-FRAC      02     Subtract a/b - c/d same denominator
-FRAC.     03.    Reduce fraction
-FRAC.     04.    Find common denominator
-FRAC.     05.    Reduce 2 digits fraction
-FRAC.     06.    Add and reduce fractions 
-FRAC.     07.    Subtract and reduce fractions 
-
-
-
-
 NUM CONC  13     Round up to nearest N?
 NUM CONC  14     Decide if it is +,-,/,*
 NUM CONC  15     Divide or multiply by constant
+NUM CONC. 16.    Two digit x two digit 
+NUM CONC. 17.    Long division
 
-FRAC.     04.    Common denominator
-FRAC.     08
-FRAC.     12
-FRAC.     15
+FRAC      01     Addition a/b + c/d same denominator
+FRAC      02     Subtract a/b - c/d same denominator
+FRAC      03     Reduce fraction
+FRAC      04     Find common denominator
+FRAC      05     Reduce 2 digits fraction
+FRAC      06     Add and reduce fractions 
+FRAC      07     Subtract and reduce fractions 
+FRAC      08     n/nn / n/nn
+FRAC      09     a b/c + c d/e
+FRAC      10     1/n - 1/m
+FRAC      11     a b/c - c d/e
+FRAC.     12     a/b x c/d
+FRAC      13     a b/c x c d/e
+FRAC      14     a/b / c/d as fraction
+FRAC.     15     a b/c / c d/e
 
-SUB.      01     Small subtraction 
-SUB.      02.    Subtraction two digits no carry
-SUB       07     
+SUB       01     Small subtraction 
+SUB       02     Subtraction two digits no carry
+SUB       03     nn - n     
+SUB       04     nnn - nn
+SUB       05     nnn - nnn
+SUB       06     nnn - nn
+SUB       07     nn - k      Parameters: First > nn > Second  k = Third
 
 
 
