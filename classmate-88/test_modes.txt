@@ -17,14 +17,17 @@ ADD       06     Addition 3 parameters
 ADD       07     Add 3 numbers, 3 parameters 
 
 MUL       01     Single digit multiply
+MUL.      02.    two digit x single digit
 MUL.      07
 
 DIV       01     2 digit / 1 digit
 DIV       03     3 digit / 1 digit
-DIV.      08
+DIV.      08.    divide 2 numbers, giving result and remainder. 2?3 parameters 
+DIV.      15.    a b/c / d e/f
 
 
 NUM CONC  01     Tallies to number
+NUM CONC. 02.    Input a and b, add a to itself while < b
 NUM CONC  03     Fraction of tallies
 NUM CONC. 04.    Multiplication numbers factors of ten
 NUM CONC  05     Divide with zeros
@@ -38,8 +41,11 @@ NUM CONC  12     Nine number square, fill in missing number multiplication
 NUM CONC. 16.    Two digit x two digit 
 NUM CONC. 17.    Long division
 
-FRAC.     01     Addition a/b + c/d
-FRAC      02     Subtract a/b - c/d
+FRAC.     01     Addition a/b + c/d same denominator
+FRAC      02     Subtract a/b - c/d same denominator
+FRAC.     03.    simplify fraction
+FRAC.     04.    Find common denominator
+
 
 
 NUM CONC  13     Round up to nearest N?
