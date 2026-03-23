@@ -43,8 +43,12 @@ NUM CONC. 17.    Long division
 
 FRAC.     01     Addition a/b + c/d same denominator
 FRAC      02     Subtract a/b - c/d same denominator
-FRAC.     03.    simplify fraction
+FRAC.     03.    Reduce fraction
 FRAC.     04.    Find common denominator
+FRAC.     05.    Reduce 2 digits fraction
+FRAC.     06.    Add and reduce fractions 
+FRAC.     07.    Subtract and reduce fractions 
+
 
 
 
