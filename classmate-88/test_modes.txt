@@ -26,9 +26,13 @@ MUL       06     nnnx nnn
 MUL       07     nn x k      Parameters: First > nn > Second  k = Third
 
 DIV       01     2 digit / 1 digit
+DIV       02     nn / n
 DIV       03     3 digit / 1 digit
-DIV.      08.    divide 2 numbers, giving result and remainder. 2?3 parameters 
-DIV.      15.    a b/c / d e/f
+DIV       04     nnn / nn
+DIV       05     nnn / n
+DIV       06     nnn / nn  => result and remainder
+DIV       07     n / n   parameters set n somehow
+DIV       08     divide 2 numbers, giving result and remainder. 2?3 parameters 
 
 
 NUM CONC  01     Tallies to number
