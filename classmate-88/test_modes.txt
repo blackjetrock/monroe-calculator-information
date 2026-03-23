@@ -1,24 +1,29 @@
 
-DEC.      01.    n.n +, n.n Dec places parameter
-DEC.      02.    n.n - n.n Dec places parameter
+DEC       01     n.n +, n.n Dec places parameter
+DEC       02     n.n - n.n Dec places parameter
 DEC       03     2 digit x decimal Dec places parameter 
-DEC.      04.    n.nn x n.n
+DEC       04     n.nn x n.n
+DEC       05     nn.n / nn
+DEC       06     nn.n / n giving n.nn
+DEC       07     nn.n / nn     One parameter, unknown value
 DEC       08     Fractions to decimals
-DEC       05     1 decimal place / 2 digits
-DEC       06     Two digit, one decimal place / single digit
 DEC       09     Fractions into decimals
 
 ADD       01     1 digit + 1 digit
-ADD.      02     Addition two digits no carry
+ADD       02     Addition two digits no carry
 ADD       03     Addition 2 digits carry
-ADD.      04.    3 digit + 3 digit
+ADD       04     3 digit + 3 digit
 ADD       05     Additon 3 digit + 2 digit
 ADD       06     Addition 3 parameters 
 ADD       07     Add 3 numbers, 3 parameters 
 
 MUL       01     Single digit multiply
-MUL.      02.    two digit x single digit
-MUL.      07
+MUL       02     two digit x single digit
+MUL       03     n x n x n
+MUL       04     nnn x n
+MUL       05     nn x nn
+MUL       06     nnnx nnn
+MUL       07     nn x k      Parameters: First > nn > Second  k = Third
 
 DIV       01     2 digit / 1 digit
 DIV       03     3 digit / 1 digit
