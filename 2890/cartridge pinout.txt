@@ -1,0 +1,42 @@
+2890 Cartridge Pinout
+
+Top (EPROM) side
+
+1   CEOE EPROM 1
+2   nc
+3   A9
+4   A6
+5   A2
+6   Link to pin 10
+7   nc
+8   D5
+9   D3
+10  Link to pin 6
+11  CEOE EPROM 0
+12  A10
+13  nc
+14  A8
+15  A1
+16  D2
+17  A7
+
+
+Back Side
+
+1    +5V
+2    GND
+3    D0
+4    A3
+5    A5
+6    CEOE EPROM 2
+7    D7
+8    nc
+9    CEOE_EPROM 3
+10   D4
+11   D6
+12   D1
+13   A0
+14   A4
+15   nc
+16   nc
+17   nc
