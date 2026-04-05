@@ -1,0 +1,15 @@
+#!/usr/bin/tclsh
+
+set fn [lindex $argv 0]
+
+set f [open $fn rb]
+set txt [read $f]
+close $f
+
+
+foreach byte [split $txt ""] {
+    if { ($byte >=0) && ($byte <26) } {
+        set ch [string format "%c", $byte]
+        puts $ch
+    }
+}
