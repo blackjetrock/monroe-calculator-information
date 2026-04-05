@@ -169,14 +169,14 @@ int main(int argc, char *argv[])
   
   printf("\nReading file %s", filename);
 
-  // read fie data in
+  // read file data in
   fp = fopen(filename, "rb");
 
   while( !feof(fp) )
     {
       n = fread((void *)&byte, 1, 1, fp);
 
-      printf("\n%02X n:%d", byte, n);
+      //printf("\n%02X n:%d", byte, n);
       
       if( n == 1)
         {
@@ -185,11 +185,28 @@ int main(int argc, char *argv[])
     }
   
   fclose(fp);
+
+  // Disassemble it
+  int ba = PC;
+  char data[200];
   
   for(int j=0; j<i; j++)
     {
+      ba = PC;
+      data[0] = '\0';
+      
       dis();
-      printf("\n%04X, %s", PC, buffer);
+      printf("\n%04X: ", ba);
+
+      for(int ii=ba; ii<PC; ii++)
+        {
+          char fragment[200];
+          sprintf(fragment, "%02X ", opram[ii]);
+          strcat(data, fragment);
+        }
+
+      printf("%-15s", data);
+      printf("  %s", buffer);
     }
 
   printf("\n\n");

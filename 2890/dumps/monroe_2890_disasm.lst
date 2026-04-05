@@ -1,0 +1,61 @@
+; --- Entry Points / Jump Table ---
+; These labels at the start often represent entry points for 
+; specific calculator functions or key-press handlers.
+0000: 00 8E            lbl 8e        ; Entry Point 8E
+0002: 00 98            lbl 98        ; Entry Point 98
+0004: 00 E5            lbl e5        ; Entry Point E5
+0006: 00 E9            lbl e9        ; Entry Point E9
+0008: 00 F9            lbl f9        ; Entry Point F9
+000A: 00 FC            lbl fc        ; Entry Point FC
+000C: 00 FC            lbl fc        ; Duplicate/Alternative Entry FC
+
+; --- Main Initialization / Helper Routine ---
+000E: 01 07            tml 07        ; Call subroutine at address 07 (Transfer and Mark)
+0010: 04               lbua          ; Load B Upper Address (Setup for index register B)
+0011: 32               ld 2          ; Load value from register 2 into Accumulator (A)
+0012: 07               rtnsk         ; Return from subroutine and skip the next instruction
+0013: A4               t 24          ; Store Accumulator into register 24 (Transfer)
+0014: 07               rtnsk         ; Return and skip
+0015: A4               t 24          ; Store A to register 24 (if not skipped)
+0016: 07               rtnsk         ; Return and skip
+0017: A4               t 24          ; Store A to register 24
+0018: 07               rtnsk         ; Return and skip
+0019: A4               t 24          ; Store A to register 24
+001A: 07               rtnsk         ; Return and skip
+001B: A4               t 24          ; Store A to register 24
+001C: 07               rtnsk         ; Return and skip
+001D: A4               t 24          ; Store A to register 24
+
+; --- Repeated Subroutine Calls ---
+; This sequence likely handles multi-digit operations or display updates.
+001E: 01 21            tml 21        ; Call subroutine 21
+0020: 01 21            tml 21        ; Call subroutine 21
+0022: 01 0D            tml 0d        ; Call subroutine 0D
+0024: 01 21            tml 21        ; Call subroutine 21
+0026: 01 8B            tml 8b        ; Call subroutine 8B
+0028: 01 D0            tml d0        ; Call subroutine D0
+002A: 01 D6            tml d6        ; Call subroutine D6
+
+; --- Logic and Arithmetic Section ---
+002C: 04               lbua          ; Setup index register B
+002D: 32               ld 2          ; Load register 2 into A
+002E: 02 10            tml 10        ; Call subroutine 10
+0030: 02 10            tml 10        ; Call subroutine 10
+0032: 0D               and           ; Bitwise AND of Accumulator with memory nibble
+0033: 97               t 17          ; Store result in register 17
+0034: 0D               and           ; Bitwise AND
+0035: 9A               t 1a          ; Store result in register 1A
+0036: 02 3E            tml 3e        ; Call subroutine 3E
+
+0038: 0E               comp          ; Compare Accumulator with memory
+0039: 52 0D            tl 2 0d       ; Conditional jump (Transfer Link) if comparison met
+003B: 2D               exd 5         ; Exchange digit in memory with register 5
+003C: 0D               and           ; Logical AND
+003D: CF 07            lb 07         ; Load index register B with literal 07
+003F: 79               ldi 9         ; Load decimal 9 into Accumulator
+0040: 0A               adc           ; Add with Carry (nibble addition)
+0041: BE               t 3e          ; Store result in register 3E
+0042: 08               adcsk         ; Add with Carry and Skip next if carry occurs
+0043: D2 08            tm 12 08      ; Transfer Memory (Jump to address 12 08)
+0045: 59 0E            tl 9 0e       ; Conditional jump
+0047: B7               t 37          ; Store A to register 37

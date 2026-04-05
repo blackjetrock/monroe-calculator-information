@@ -1,0 +1,468 @@
+; =============================================================================
+; ARCHITECTURE: Monroe 2890 / Compucorp 32x (4-bit BCD Processor)
+; FILE: monroe_2890_cartridge_chopped.txt.a.bin
+; =============================================================================
+; INSTRUCTION KEY:
+; lbl   - External Entry Point or Label
+; tml   - Subroutine Call (Transfer and Mark)
+; tm/tl - Jump (Transfer)
+; lbua  - Load B Register Upper Address (Pointer Setup)
+; lb    - Load B Register (Memory Address Pointer)
+; ld    - Load Register into Accumulator
+; ldi   - Load Immediate value to Accumulator
+; t     - Transfer Accumulator to Register
+; exd   - Exchange Digit (Swaps accumulator with a specific memory digit)
+; ex    - Exchange Register (Swaps accumulator with entire register)
+; adc   - Add with Carry (Essential for BCD math)
+; rtnsk - Return and Skip (Conditional return logic)
+; sf1   - Set Flag 1 (Usually indicates error or specialized state)
+; =============================================================================
+
+; --- SECTION 1: SYSTEM ENTRY TABLE ---
+; The calculator OS jumps to these addresses when cartridge keys are pressed.
+0000: 00 8E            lbl 8e        ; Function Entry 1
+0002: 00 98            lbl 98        ; Function Entry 2
+0004: 00 E5            lbl e5        ; Function Entry 3
+0006: 00 E9            lbl e9        ; Function Entry 4
+0008: 00 F9            lbl f9        ; Function Entry 5
+000A: 00 FC            lbl fc        ; Function Entry 6
+000C: 00 FC            lbl fc        ; Function Entry 6 (Alternate)
+
+; --- SECTION 2: INITIALIZATION & CONDITIONAL LOGIC ---
+000E: 01 07            tml 07        ; Call setup routine at 07
+0010: 04               lbua          ; Setup B-Register pointer
+0011: 32               ld 2          ; Load Register 2
+0012: 07               rtnsk         ; Return and skip (Branch if successful)
+0013: A4               t 24          ; Save result in Reg 24
+0014: 07               rtnsk         ; Branching ladder for multiple states
+0015: A4               t 24          
+0016: 07               rtnsk
+0017: A4               t 24
+0018: 07               rtnsk
+0019: A4               t 24
+001A: 07               rtnsk
+001B: A4               t 24
+001C: 07               rtnsk
+001D: A4               t 24
+001E: 01 21            tml 21        ; Subroutine processing
+0020: 01 21            tml 21
+0022: 01 0D            tml 0d
+0024: 01 21            tml 21
+0026: 01 8B            tml 8b
+0028: 01 D0            tml d0
+002A: 01 D6            tml d6
+002C: 04               lbua          ; Repointing B-Register
+002D: 32               ld 2
+002E: 02 10            tml 10
+0030: 02 10            tml 10
+0032: 0D               and           ; Masking digits for BCD processing
+0033: 97               t 17          ; Store masked digit in Reg 17
+0034: 0D               and
+0035: 9A               t 1a          ; Store masked digit in Reg 1A
+0036: 02 3E            tml 3e
+0038: 0E               comp          ; Complement (Logical NOT)
+0039: 52 0D            tl 2 0d       ; Conditional jump
+003B: 2D               exd 5         ; Exchange Digit 5 (likely the exponent)
+003C: 0D               and
+003D: CF 07            lb 07         ; Set memory pointer to 07
+003F: 79               ldi 9         ; Load decimal 9
+0040: 0A               adc           ; Add 9 to current digit with carry
+0041: BE               t 3e
+0042: 08               adcsk         ; Add with carry and skip if zero
+0043: D2 08            tm 12 08      ; Jump to address 12 08
+0045: 59 0E            tl 9 0e
+0047: B7               t 37
+
+; --- SECTION 3: REGISTER SHUFFLING & POINTER MATH ---
+0048: 04               lbua
+0049: 32               ld 2
+004A: 04               lbua
+004B: BC               t 3c
+004C: 04               lbua
+004D: D8 04            tm 18 04
+004F: E0 04            tm 20 04
+0051: FB 05            tm 3b 05
+0053: 01 05            tml 05
+0055: B2               t 32
+0056: 05               rtn           ; End of subroutine
+0057: BD               t 3d
+0058: 05               rtn
+0059: C8 05            lb 05
+005B: D3 05            tm 13 05
+005D: DA 05            tm 1a 05
+005F: EE 06            tm 2e 06
+0061: 02 06            tml 06
+0063: 0A               adc           ; Accumulating result
+0064: 06               xs            ; Exchange Status register
+0065: B8               t 38
+0066: 06               xs
+0067: BE               t 3e
+0068: 06               xs
+0069: C7 06            lb 06
+006B: CC 06            lb 06
+006D: D1 06            tm 11 06
+006F: D8 06            tm 18 06
+0071: DB 06            tm 1b 06
+0073: DE 05            tm 1e 05
+0075: 92               t 12
+0076: 05               rtn
+0077: A4               t 24
+0078: 04               lbua
+0079: C4 06            lb 06
+007B: EE 06            tm 2e 06
+007D: F1 02            tm 31 02
+007F: 54 03            tl 4 03
+0081: 2A               exd 2         ; Swapping Mantissa Digit 2
+0082: 07               rtnsk
+0083: 69               adi 9         ; Arithmetic Add Immediate 9
+0084: 0A               adc
+0085: 6E               adi e         ; Arithmetic Add Immediate 14 (hex E)
+0086: 08               adcsk
+0087: D5 0B            tm 15 0b
+0089: 3E               ex 6          ; Exchange whole Register 6
+008A: 0D               and
+008B: 8E               t 0e
+
+; --- SECTION 4: MAIN CALCULATION CONSTANTS & LOOPS ---
+; This area sets up large decimal values in internal registers.
+008C: 06               xs
+008D: F4 7A            tm 34 7a
+008F: 31               ld 1
+0090: 80               t 00          ; Initialize Register 0
+0091: 90               t 10          ; Initialize Register 10
+0092: 8A               t 0a          ; Initialize Register 0A
+0093: 80               t 00
+0094: 71               ldi 1         ; Hardcoding constants (e.g., 1.35...)
+0095: 73               ldi 3
+0096: AF               t 2f
+0097: 4A               skbi a        ; Skip if BCD Digit is 'a' (Internal flag)
+0098: 81               t 01
+0099: 90               t 10
+009A: 8A               t 0a
+009B: 80               t 00
+009C: 71               ldi 1
+009D: 73               ldi 3
+009E: 75               ldi 5
+009F: E7 80            tm 27 80
+00A1: E9 64            tm 29 64
+00A3: 38               ex 0
+00A4: 64               adi 4
+00A5: 30               ld 0
+00A6: 9F               t 1f
+00A7: 3F               ex 7
+00A8: 28               exd 0
+00A9: F7 C0            tm 37 c0
+00AB: 2D               exd 5
+00AC: 3A               ex 2
+00AD: 80               t 00
+00AE: 82               t 02
+00AF: 63               adi 3         ; Incrementing index or counter
+00B0: FD 81            tm 3d 81
+00B2: 2B               exd 3
+00B3: 29               exd 1
+00B4: 3D               ex 5
+00B5: 90               t 10
+00B6: 81               t 01
+00B7: 80               t 00
+00B8: 71               ldi 1
+00B9: 73               ldi 3
+00BA: 90               t 10
+00BB: 82               t 02
+00BC: 82               t 02
+00BD: 71               ldi 1
+00BE: 73               ldi 3
+00BF: 8A               t 0a
+00C0: FD 8C            tm 3d 8c      ; Loop back to 3D 8C logic
+00C2: A5               t 25
+00C3: 80               t 00
+00C4: 68               adi 8
+00C5: 73               ldi 3
+00C6: 75               ldi 5
+00C7: 8A               t 0a
+00C8: 67               adi 7
+00C9: 80               t 00
+00CA: 90               t 10
+00CB: 89               t 09
+00CC: 80               t 00
+00CD: 71               ldi 1
+00CE: 73               ldi 3
+00CF: 90               t 10
+00D0: 8F               t 0f
+00D1: 80               t 00
+00D2: 71               ldi 1
+00D3: 73               ldi 3
+00D4: 3F               ex 7
+00D5: 28               exd 0
+00D6: F7 90            tm 37 90
+00D8: 2D               exd 5
+00D9: 3A               ex 2
+00DA: 80               t 00
+00DB: 82               t 02
+00DC: 63               adi 3
+00DD: FD 81            tm 3d 81
+00DF: 2B               exd 3
+00E0: 29               exd 1
+00E1: 75               ldi 5
+00E2: 8A               t 0a
+00E3: FD E4            tm 3d e4
+
+; --- SECTION 5: HARDWARE INTERFACE & STATUS FLAGS ---
+0257: 22               sf1           ; Set Flag 1 (Calculation Complete/Success)
+0258: 01 2B            tml 2b        ; Return status to OS
+025A: 08               adcsk         ; Check for overflow/carry
+025B: 20               sc            ; Set Carry
+025C: 10               lbmx          ; Load B register from Memory Index
+025D: 12               lax           ; Load Accumulator from Index Register
+025E: 05               rtn           ; Return to Main System
+025F: 4D               skbi d        ; Hardware test for key/state 'D'
+0260: 22               sf1
+0261: 8D               t 0d
+0262: 22               sf1
+0263: 03 0F            tml 0f
+0265: 0E               comp
+0266: 14               skf2          ; Skip if Flag 2 is set (Internal error check)
+0267: 12               lax
+0268: 01 03            tml 03
+026A: 14               skf2
+026B: 20               sc
+026C: 04               lbua
+026D: 01 14            tml 14
+
+; --- SECTION 6: ITERATIVE SERIES / TRANSCENDENTAL MATH ---
+; High repetition of logical ops suggests a CORDIC-style iterative calculation.
+034A: 38               ex 0
+034B: 38               ex 0
+034C: 33               ld 3
+034D: 0A               adc           ; Continuous decimal summation
+034E: 0C               eor           ; Exclusive OR for masking/toggling flags
+034F: 22               sf1           ; Setting/Resetting state
+0350: 35               ld 5
+0351: 38               ex 0
+0352: 33               ld 3
+0353: 0C               eor
+0354: 35               ld 5
+0355: 22               sf1
+0356: 32               ld 2
+0357: 0C               eor
+0358: 37               ld 7
+0359: 0C               eor
+035A: 39               ex 1
+035B: 22               sf1
+035C: 0C               eor
+035D: 0C               eor
+035E: 0C               eor
+035F: 0A               adc
+0360: 36               ld 6
+0361: 22               sf1
+... (Continues until 04D8) ...
+
+; --- SECTION 7: FINAL ROUTINES & ROM PADDING ---
+0707: 00 C1            lbl c1        ; Calculation wrap-up
+0709: 4C               skbi c
+070A: 3B               ex 3
+070B: 9E               t 1e
+070C: 29               exd 1         ; Final Mantissa adjustment
+070D: 29               exd 1
+070E: F7 66            tm 37 66      ; Display result jump
+0710: 28               exd 0
+0711: 3D               ex 5
+0712: 3A               ex 2
+0713: A5               t 25
+0714: 81               t 01
+0715: 68               adi 8
+0716: 73               ldi 3
+0717: F2 FE            tm 32 fe      ; Jump to Exit
+0719: 3D               ex 5
+071A: F0 3D            tm 30 3d
+071C: 2A               exd 2
+071D: 3D               ex 5
+071E: 3D               ex 5
+071F: F7 9E            tm 37 9e
+0721: 67               adi 7
+0722: F8 6B            tm 38 6b
+0724: 34               ld 4
+0725: F8 83            tm 38 83
+0727: 78               ldi 8
+0728: 2B               exd 3
+0729: F8 6B            tm 38 6b
+072B: 35               ld 5
+072C: 9F               t 1f
+072D: FD 3B            tm 3d 3b
+072F: 9F               t 1f
+0730: 73               ldi 3
+0731: F2 FE            tm 32 fe
+0733: 3D               ex 5
+0734: F0 3D            tm 30 3d
+0736: 2A               exd 2
+0737: 3D               ex 5
+0738: 3D               ex 5
+0739: F7 83            tm 37 83
+073B: 78               ldi 8
+073C: F8 6B            tm 38 6b
+073E: 34               ld 4
+073F: F8 9E            tm 38 9e
+0741: 67               adi 7
+0742: F8 6B            tm 38 6b
+0744: 34               ld 4
+0745: 2D               exd 5
+0746: A5               t 25
+0747: 81               t 01
+0748: 68               adi 8
+0749: 73               ldi 3
+074A: 75               ldi 5
+074B: 29               exd 1
+074C: F0 28            tm 30 28
+074E: 3A               ex 2
+074F: C1 4C            lb 4c
+0751: 29               exd 1
+0752: 9F               t 1f
+0753: 67               adi 7
+0754: 81               t 01
+0755: 6B               adi b
+0756: 34               ld 4
+0757: 81               t 01
+0758: 6B               adi b
+0759: 35               ld 5
+075A: 9F               t 1f
+075B: 73               ldi 3
+075C: F2 FE            tm 32 fe
+075E: 3D               ex 5
+075F: F7 83            tm 37 83
+0761: 78               ldi 8
+0762: F8 6B            tm 38 6b
+0764: 34               ld 4
+0765: F8 9E            tm 38 9e
+0767: 67               adi 7
+0768: F8 6B            tm 38 6b
+076A: 34               ld 4
+076B: 2D               exd 5
+076C: A5               t 25
+076D: 81               t 01
+076E: 68               adi 8
+076F: 73               ldi 3
+0770: 75               ldi 5
+0771: 9F               t 1f
+0772: 67               adi 7
+0773: 80               t 00
+0774: 82               t 02
+0775: E8 A5            tm 28 a5
+0777: 81               t 01
+0778: 68               adi 8
+0779: 67               adi 7
+077A: 83               t 03
+077B: A7               t 27
+077C: E8 80            tm 28 80
+077E: 77               ldi 7
+077F: 81               t 01
+0780: 52 F5            tl 2 f5
+0782: 28               exd 0
+0783: FE 3D            tm 3e 3d
+0785: F2 3D            tm 32 3d
+0787: 2A               exd 2
+0788: 3A               ex 2
+0789: 33               ld 3
+078A: 36               ld 6
+078B: 35               ld 5
+078C: 83               t 03
+078D: 4A               skbi a
+078E: 29               exd 1
+078F: F3 EC            tm 33 ec
+0791: 88               t 08
+0792: FD 33            tm 3d 33
+0794: 36               ld 6
+0795: 30               ld 0
+0796: 28               exd 0
+0797: F2 3D            tm 32 3d
+0799: F0 2B            tm 30 2b
+079B: 3A               ex 2
+079C: 85               t 05
+079D: 2B               exd 3
+079E: 29               exd 1
+079F: 8A               t 0a
+07A0: FD A5            tm 3d a5
+07A2: 81               t 01
+07A3: 68               adi 8
+07A4: 67               adi 7
+07A5: 88               t 08
+07A6: 67               adi 7
+07A7: 2F               exd 7
+07A8: 80               t 00
+07A9: 77               ldi 7
+07AA: 81               t 01
+07AB: 52 7A            tl 2 7a
+07AD: 31               ld 1
+07AE: 8E               t 0e
+07AF: 6B               adi b
+07B0: 30               ld 0
+07B1: 2D               exd 5
+07B2: 90               t 10
+07B3: 89               t 09
+07B4: 80               t 00
+07B5: 71               ldi 1
+07B6: 73               ldi 3
+07B7: 75               ldi 5
+07B8: A0               t 20
+07B9: 67               adi 7
+07BA: A1               t 21
+07BB: 80               t 00
+07BC: 68               adi 8
+07BD: 67               adi 7
+07BE: 2B               exd 3
+07BF: 81               t 01
+07C0: FD 80            tm 3d 80
+07C2: 81               t 01
+07C3: 9F               t 1f
+07C4: 42               skbi 2
+07C5: 80               t 00
+07C6: FD F4            tm 3d f4
+07C8: 28               exd 0
+07C9: FE 3D            tm 3e 3d
+07CB: 3A               ex 2
+07CC: C2 4C            lb 4c
+07CE: 29               exd 1
+07CF: 80               t 00
+07D0: 87               t 07
+07D1: 73               ldi 3
+07D2: 84               t 04
+07D3: 73               ldi 3
+07D4: 85               t 05
+07D5: 73               ldi 3
+07D6: 86               t 06
+07D7: FD 89            tm 3d 89
+07D9: F6 28            tm 36 28
+07DB: FE 3E            tm 3e 3e
+07DD: 3D               ex 5
+07DE: 3A               ex 2
+07DF: A2               t 22
+07E0: 4C               skbi c
+07E1: 29               exd 1
+07E2: 28               exd 0
+07E3: 89               t 09
+07E4: F6 82            tm 36 82
+07E6: 2F               exd 7
+07E7: 66               adi 6
+07E8: 3A               ex 2
+07E9: 92               t 12
+07EA: 84               t 04
+07EB: 83               t 03
+07EC: 71               ldi 1
+07ED: 67               adi 7
+07EE: 92               t 12
+07EF: 8C               t 0c
+07F0: 83               t 03
+07F1: 71               ldi 1
+07F2: 67               adi 7
+07F3: 3B               ex 3
+07F4: 92               t 12
+07F5: 80               t 00
+07F6: 83               t 03
+07F7: 71               ldi 1
+07F8: 67               adi 7
+07F9: 92               t 12
+07FA: 88               t 08
+07FB: 83               t 03
+07FC: 71               ldi 1
+07FD: 67               adi 7
+07FE: 29               exd 1
+07FF: 45               skbi 5
+
