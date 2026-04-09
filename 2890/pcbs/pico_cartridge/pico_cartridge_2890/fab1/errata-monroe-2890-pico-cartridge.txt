@@ -1,0 +1,4 @@
+Errata Monroe 2890 Pico Cartridge
+=================================
+
+1. One side of edge connector reversed.
