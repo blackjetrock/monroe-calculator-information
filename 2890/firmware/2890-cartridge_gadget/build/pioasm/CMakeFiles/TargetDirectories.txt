@@ -1,0 +1,7 @@
+/home/menadue/tree/github/monroe-calculator-information/2890/firmware/2890-cartridge_gadget/build/pioasm/CMakeFiles/pioasm.dir
+/home/menadue/tree/github/monroe-calculator-information/2890/firmware/2890-cartridge_gadget/build/pioasm/CMakeFiles/edit_cache.dir
+/home/menadue/tree/github/monroe-calculator-information/2890/firmware/2890-cartridge_gadget/build/pioasm/CMakeFiles/rebuild_cache.dir
+/home/menadue/tree/github/monroe-calculator-information/2890/firmware/2890-cartridge_gadget/build/pioasm/CMakeFiles/list_install_components.dir
+/home/menadue/tree/github/monroe-calculator-information/2890/firmware/2890-cartridge_gadget/build/pioasm/CMakeFiles/install.dir
+/home/menadue/tree/github/monroe-calculator-information/2890/firmware/2890-cartridge_gadget/build/pioasm/CMakeFiles/install/local.dir
+/home/menadue/tree/github/monroe-calculator-information/2890/firmware/2890-cartridge_gadget/build/pioasm/CMakeFiles/install/strip.dir
