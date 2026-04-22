@@ -1,0 +1,89 @@
+./examples/command_line/build/command_line.elf.map: .text.ff_fopen
+./examples/command_line/build/command_line.elf.map:                0x100106c0                ff_fopen
+./examples/command_line/build/command_line.elf.map: .rodata.ff_fopen.str1.4
+./examples/command_line/build/command_line.dis:10002878:	f00d ff22 	bl	100106c0 <ff_fopen>
+./examples/command_line/build/command_line.dis:100028ec:	f00d fee8 	bl	100106c0 <ff_fopen>
+./examples/command_line/build/command_line.dis:100029e2:	f00d fe6d 	bl	100106c0 <ff_fopen>
+./examples/command_line/build/command_line.dis:10002a74:	f00d fe24 	bl	100106c0 <ff_fopen>
+./examples/command_line/build/command_line.dis:10002c10:	f00d fd56 	bl	100106c0 <ff_fopen>
+./examples/command_line/build/command_line.dis:10002c36:	f00d fd43 	bl	100106c0 <ff_fopen>
+./examples/command_line/build/command_line.dis:10002c58:	f00d fd32 	bl	100106c0 <ff_fopen>
+./examples/command_line/build/command_line.dis:10002ca2:	f00d fd0d 	bl	100106c0 <ff_fopen>
+./examples/command_line/build/command_line.dis:10002da8:	f00d fc8a 	bl	100106c0 <ff_fopen>
+./examples/command_line/build/command_line.dis:10002db0:	f00d fc86 	bl	100106c0 <ff_fopen>
+./examples/command_line/build/command_line.dis:10002db8:	f00d fc82 	bl	100106c0 <ff_fopen>
+./examples/command_line/build/command_line.dis:10002dee:	f00d fc67 	bl	100106c0 <ff_fopen>
+./examples/command_line/build/command_line.dis:10002e24:	f00d fc4c 	bl	100106c0 <ff_fopen>
+./examples/command_line/build/command_line.dis:10002e5e:	f00d fc2f 	bl	100106c0 <ff_fopen>
+./examples/command_line/build/command_line.dis:10002ea4:	f00d fc0c 	bl	100106c0 <ff_fopen>
+./examples/command_line/build/command_line.dis:10002f5e:	f00d fbaf 	bl	100106c0 <ff_fopen>
+./examples/command_line/build/command_line.dis:10002f9c:	f00d fb90 	bl	100106c0 <ff_fopen>
+./examples/command_line/build/command_line.dis:10002fa4:	f00d fb8c 	bl	100106c0 <ff_fopen>
+./examples/command_line/build/command_line.dis:10002fda:	f00d fb71 	bl	100106c0 <ff_fopen>
+./examples/command_line/build/command_line.dis:10003044:	f00d fb3c 	bl	100106c0 <ff_fopen>
+./examples/command_line/build/command_line.dis:10003074:	f00d fb24 	bl	100106c0 <ff_fopen>
+./examples/command_line/build/command_line.dis:10003312:	f00d f9d5 	bl	100106c0 <ff_fopen>
+./examples/command_line/build/command_line.dis:100106c0 <ff_fopen>:
+./examples/command_line/build/command_line.dis:100106d4:	d05a      	beq.n	1001078c <ff_fopen+0xcc>
+./examples/command_line/build/command_line.dis:100106dc:	d113      	bne.n	10010706 <ff_fopen+0x46>
+./examples/command_line/build/command_line.dis:100106e0:	b98a      	cbnz	r2, 10010706 <ff_fopen+0x46>
+./examples/command_line/build/command_line.dis:100106f4:	d831      	bhi.n	1001075a <ff_fopen+0x9a>
+./examples/command_line/build/command_line.dis:100106f6:	4b28      	ldr	r3, [pc, #160]	@ (10010798 <ff_fopen+0xd8>)
+./examples/command_line/build/command_line.dis:100106fe:	bb7d      	cbnz	r5, 10010760 <ff_fopen+0xa0>
+./examples/command_line/build/command_line.dis:1001070a:	d00a      	beq.n	10010722 <ff_fopen+0x62>
+./examples/command_line/build/command_line.dis:1001070e:	d010      	beq.n	10010732 <ff_fopen+0x72>
+./examples/command_line/build/command_line.dis:10010712:	d113      	bne.n	1001073c <ff_fopen+0x7c>
+./examples/command_line/build/command_line.dis:10010718:	d110      	bne.n	1001073c <ff_fopen+0x7c>
+./examples/command_line/build/command_line.dis:1001071c:	b970      	cbnz	r0, 1001073c <ff_fopen+0x7c>
+./examples/command_line/build/command_line.dis:10010720:	e7e0      	b.n	100106e4 <ff_fopen+0x24>
+./examples/command_line/build/command_line.dis:10010726:	d1f1      	bne.n	1001070c <ff_fopen+0x4c>
+./examples/command_line/build/command_line.dis:1001072c:	d1ee      	bne.n	1001070c <ff_fopen+0x4c>
+./examples/command_line/build/command_line.dis:10010730:	e7d8      	b.n	100106e4 <ff_fopen+0x24>
+./examples/command_line/build/command_line.dis:10010736:	d1eb      	bne.n	10010710 <ff_fopen+0x50>
+./examples/command_line/build/command_line.dis:1001073a:	e7d3      	b.n	100106e4 <ff_fopen+0x24>
+./examples/command_line/build/command_line.dis:1001073e:	d103      	bne.n	10010748 <ff_fopen+0x88>
+./examples/command_line/build/command_line.dis:10010742:	b90b      	cbnz	r3, 10010748 <ff_fopen+0x88>
+./examples/command_line/build/command_line.dis:10010746:	e7cd      	b.n	100106e4 <ff_fopen+0x24>
+./examples/command_line/build/command_line.dis:1001074a:	d10e      	bne.n	1001076a <ff_fopen+0xaa>
+./examples/command_line/build/command_line.dis:10010750:	d10b      	bne.n	1001076a <ff_fopen+0xaa>
+./examples/command_line/build/command_line.dis:10010754:	b94b      	cbnz	r3, 1001076a <ff_fopen+0xaa>
+./examples/command_line/build/command_line.dis:10010758:	e7c4      	b.n	100106e4 <ff_fopen+0x24>
+./examples/command_line/build/command_line.dis:10010768:	e7ca      	b.n	10010700 <ff_fopen+0x40>
+./examples/command_line/build/command_line.dis:1001076c:	d106      	bne.n	1001077c <ff_fopen+0xbc>
+./examples/command_line/build/command_line.dis:10010772:	d103      	bne.n	1001077c <ff_fopen+0xbc>
+./examples/command_line/build/command_line.dis:10010776:	b90b      	cbnz	r3, 1001077c <ff_fopen+0xbc>
+./examples/command_line/build/command_line.dis:1001077a:	e7b3      	b.n	100106e4 <ff_fopen+0x24>
+./examples/command_line/build/command_line.dis:1001077c:	4807      	ldr	r0, [pc, #28]	@ (1001079c <ff_fopen+0xdc>)
+./examples/command_line/build/command_line.dis:1001078a:	e7ab      	b.n	100106e4 <ff_fopen+0x24>
+./examples/command_line/build/command_line.dis:10010794:	e7e7      	b.n	10010766 <ff_fopen+0xa6>
+./examples/command_line/tests/CreateAndVerifyExampleFiles.c:		pxFile = ff_fopen( pcFileName, "w" );
+./examples/command_line/tests/CreateAndVerifyExampleFiles.c:		pxFile = ff_fopen( pcFileName, "r" );
+./examples/command_line/tests/CreateAndVerifyExampleFiles.c:	pxFile = ff_fopen( pcFileName, "w" );
+./examples/command_line/tests/CreateAndVerifyExampleFiles.c:	pxFile = ff_fopen( pcFileName, "r" );
+./examples/command_line/tests/CreateAndVerifyExampleFiles.c:				pxFile = ff_fopen( xHTTPFilesToCopy[ x ].pcFileName, "w+" );
+./examples/command_line/tests/ff_stdio_tests_with_cwd.c: * Examples and basic tests of the ff_fopen() function.
+./examples/command_line/tests/ff_stdio_tests_with_cwd.c:static void prvTest_ff_fopen( const char *pcMountPath );
+./examples/command_line/tests/ff_stdio_tests_with_cwd.c:	prvTest_ff_fopen( pcMountPath );
+./examples/command_line/tests/ff_stdio_tests_with_cwd.c:		pxFile = ff_fopen( pcTestFileName, "w+" );
+./examples/command_line/tests/ff_stdio_tests_with_cwd.c:    		FF_PRINTF("ff_fopen error: %s (%d)\n", strerror(errno), errno);            
+./examples/command_line/tests/ff_stdio_tests_with_cwd.c:	pxFile = ff_fopen( "seek_rewind_test_file", "a+" );
+./examples/command_line/tests/ff_stdio_tests_with_cwd.c:	pxFile = ff_fopen( pcTestFileName, "r" );
+./examples/command_line/tests/ff_stdio_tests_with_cwd.c:	pxFile = ff_fopen( pcTestFileName, "r+" );
+./examples/command_line/tests/ff_stdio_tests_with_cwd.c:	pxFile = ff_fopen( pcTestFileName, "r+" );
+./examples/command_line/tests/ff_stdio_tests_with_cwd.c:	pxFile = ff_fopen( pcTestFileName, "r" );
+./examples/command_line/tests/ff_stdio_tests_with_cwd.c:	pxFile = ff_fopen( pcTestFileName, "r" );
+./examples/command_line/tests/ff_stdio_tests_with_cwd.c:	pxFile = ff_fopen( pcTestFileName, "r+" );
+./examples/command_line/tests/ff_stdio_tests_with_cwd.c:	pxFile = ff_fopen( "source_dir/source.txt", "w" );
+./examples/command_line/tests/ff_stdio_tests_with_cwd.c:	pxFile = ff_fopen( "source.txt", "r" );
+./examples/command_line/tests/ff_stdio_tests_with_cwd.c:	pxFile = ff_fopen( "source.txt", "r" );
+./examples/command_line/tests/ff_stdio_tests_with_cwd.c:	pxFile = ff_fopen( "source.txt2", "w" );
+./examples/command_line/tests/ff_stdio_tests_with_cwd.c:	pxFile = ff_fopen( "destination.txt", "r" );
+./examples/command_line/tests/ff_stdio_tests_with_cwd.c:static void prvTest_ff_fopen( const char *pcMountPath )
+./examples/command_line/tests/ff_stdio_tests_with_cwd.c:	pxFile = ff_fopen( pcFileName, "r" );
+./examples/command_line/tests/ff_stdio_tests_with_cwd.c:	pxFile = ff_fopen( pcFileName, "r+" );
+./examples/command_line/tests/ff_stdio_tests_with_cwd.c:	pxFile = ff_fopen( pcFileName, "w" );
+./examples/command_line/tests/ff_stdio_tests_with_cwd.c:	pxFile = ff_fopen( pcFileName, "a" );
+./examples/command_line/tests/ff_stdio_tests_with_cwd.c:	pxFile = ff_fopen( pcFileName, "r" );
+./examples/command_line/tests/ff_stdio_tests_with_cwd.c:	pxFile = ff_fopen( pcFileName, "w" );
+./src/include/ff_stdio.h:FF_FILE *ff_fopen(const char *pcFile, const char *pcMode);
+./src/src/ff_stdio.c:FF_FILE *ff_fopen(const char *pcFile, const char *pcMode) {
