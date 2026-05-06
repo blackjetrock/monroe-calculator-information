@@ -1,0 +1,4 @@
+(fp_lib_table
+	(version 7)
+	(lib (name "monroe2890") (type "KiCad") (uri "${KIPRJMOD}/monroe2890.pretty") (options "") (descr ""))
+)
